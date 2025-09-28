@@ -1,0 +1,658 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="健康計算ツール - BMI、カロリー、運動距離計算">
+
+	<!-- title -->
+	<title>健康計算ツール - Fruitely</title>
+
+	<!-- favicon -->
+	<link rel="shortcut icon" type="image/png" href="assets/img/favicon.png">
+	<!-- google font -->
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Poppins:400,700&display=swap" rel="stylesheet">
+	<!-- fontawesome -->
+	<link rel="stylesheet" href="assets/css/all.min.css">
+	<!-- bootstrap -->
+	<link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+	<!-- owl carousel -->
+	<link rel="stylesheet" href="assets/css/owl.carousel.css">
+	<!-- magnific popup -->
+	<link rel="stylesheet" href="assets/css/magnific-popup.css">
+	<!-- animate css -->
+	<link rel="stylesheet" href="assets/css/animate.css">
+	<!-- mean menu css -->
+	<link rel="stylesheet" href="assets/css/meanmenu.min.css">
+	<!-- main style -->
+	<link rel="stylesheet" href="assets/css/main.css">
+	<!-- responsive -->
+	<link rel="stylesheet" href="assets/css/responsive.css">
+
+	<style>
+		.calculator-section {
+			background-color: #f8f9fa;
+			padding: 40px 0;
+			margin: 30px 0;
+			border-radius: 10px;
+		}
+		.calculator-card {
+			background: white;
+			padding: 30px;
+			border-radius: 10px;
+			box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+			margin-bottom: 30px;
+		}
+		.calc-input {
+			width: 100%;
+			padding: 12px;
+			margin: 10px 0;
+			border: 2px solid #ddd;
+			border-radius: 5px;
+			font-size: 16px;
+		}
+		.calc-button {
+			background-color: #F28123;
+			color: white;
+			padding: 12px 30px;
+			border: none;
+			border-radius: 5px;
+			cursor: pointer;
+			font-size: 16px;
+			font-weight: bold;
+			margin: 10px 5px;
+		}
+		.calc-button:hover {
+			background-color: #e06d0a;
+		}
+		.result-box {
+			background-color: #e8f5e8;
+			border: 2px solid #4CAF50;
+			padding: 20px;
+			margin: 20px 0;
+			border-radius: 8px;
+			display: none;
+		}
+		.result-text {
+			font-size: 18px;
+			font-weight: bold;
+			color: #2E7D32;
+		}
+		.calc-title {
+			color: #F28123;
+			margin-bottom: 20px;
+			text-align: center;
+		}
+		.input-group {
+			margin-bottom: 15px;
+		}
+		.input-label {
+			display: block;
+			margin-bottom: 5px;
+			font-weight: bold;
+			color: #333;
+		}
+		.health-tips {
+			background-color: #fff3cd;
+			border: 1px solid #ffeaa7;
+			padding: 15px;
+			border-radius: 5px;
+			margin-top: 20px;
+		}
+	</style>
+</head>
+<body>
+	
+	<!--PreLoader-->
+    <div class="loader">
+        <div class="loader-inner">
+            <div class="circle"></div>
+        </div>
+    </div>
+    <!--PreLoader Ends-->
+	
+	<!-- header -->
+	<div class="top-header-area" id="sticker">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12 col-sm-12 text-center">
+					<div class="main-menu-wrap">
+						<!-- logo -->
+						<div class="site-logo">
+							<a href="index.html">
+								<img src="assets/img/logo.png" alt="">
+							</a>
+						</div>
+						<!-- logo -->
+
+						<!-- menu start -->
+						<nav class="main-menu">
+							<ul>
+								<li><a href="index.html">ホーム</a></li>
+								<li><a href="about.html">会社概要</a></li>
+								<li><a href="shop.html">ショップ</a></li>
+								<li><a href="news.html">ニュース</a></li>
+								<li class="current-list-item"><a href="health-calculator.html">健康計算</a></li>
+								<li><a href="contact.html">お問い合わせ</a></li>
+								<li>
+									<div class="header-icons">
+										<a class="shopping-cart" href="cart.html"><i class="fas fa-shopping-cart"></i></a>
+										<a class="mobile-hide search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+									</div>
+								</li>
+							</ul>
+						</nav>
+						<a class="mobile-show search-bar-icon" href="#"><i class="fas fa-search"></i></a>
+						<div class="mobile-menu"></div>
+						<!-- menu end -->
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end header -->
+
+	<!-- search area -->
+	<div class="search-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<span class="close-btn"><i class="fas fa-window-close"></i></span>
+					<div class="search-bar">
+						<div class="search-bar-tablecell">
+							<h3>検索キーワード:</h3>
+							<input type="text" placeholder="キーワード">
+							<button type="submit">検索 <i class="fas fa-search"></i></button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end search area -->
+	
+	<!-- breadcrumb-section -->
+	<div class="breadcrumb-section breadcrumb-bg">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-8 offset-lg-2 text-center">
+					<div class="breadcrumb-text">
+						<p>健康管理ツール</p>
+						<h1>健康計算ツール</h1>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end breadcrumb section -->
+
+	<!-- calculator section -->
+	<div class="mt-150 mb-150">
+		<div class="container">
+			
+			<!-- BMI Calculator -->
+			<div class="calculator-section">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="calculator-card">
+							<h2 class="calc-title">BMI計算ツール</h2>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="input-group">
+										<label class="input-label">身長 (cm)</label>
+										<input type="number" id="height" class="calc-input" placeholder="例: 170">
+									</div>
+									<div class="input-group">
+										<label class="input-label">体重 (kg)</label>
+										<input type="number" id="weight" class="calc-input" placeholder="例: 65">
+									</div>
+									<button class="calc-button" onclick="calculateBMI()">BMIを計算</button>
+									<button class="calc-button" onclick="clearBMI()">クリア</button>
+								</div>
+								<div class="col-md-6">
+									<div id="bmi-result" class="result-box">
+										<div class="result-text" id="bmi-value"></div>
+										<div id="bmi-category"></div>
+									</div>
+									<div class="health-tips">
+										<strong>BMI基準値:</strong><br>
+										• 18.5未満: 低体重<br>
+										• 18.5-24.9: 普通体重<br>
+										• 25-29.9: 肥満度1<br>
+										• 30以上: 肥満度2以上
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Calorie Calculator -->
+			<div class="calculator-section">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="calculator-card">
+							<h2 class="calc-title">基礎代謝量計算ツール</h2>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="input-group">
+										<label class="input-label">年齢</label>
+										<input type="number" id="age" class="calc-input" placeholder="例: 30">
+									</div>
+									<div class="input-group">
+										<label class="input-label">身長 (cm)</label>
+										<input type="number" id="cal-height" class="calc-input" placeholder="例: 170">
+									</div>
+									<div class="input-group">
+										<label class="input-label">体重 (kg)</label>
+										<input type="number" id="cal-weight" class="calc-input" placeholder="例: 65">
+									</div>
+									<div class="input-group">
+										<label class="input-label">性別</label>
+										<select id="gender" class="calc-input">
+											<option value="male">男性</option>
+											<option value="female">女性</option>
+										</select>
+									</div>
+									<div class="input-group">
+										<label class="input-label">活動レベル</label>
+										<select id="activity" class="calc-input">
+											<option value="1.2">座り仕事が多い</option>
+											<option value="1.375">軽い運動</option>
+											<option value="1.55">中程度の運動</option>
+											<option value="1.725">激しい運動</option>
+											<option value="1.9">非常に激しい運動</option>
+										</select>
+									</div>
+									<button class="calc-button" onclick="calculateCalories()">カロリー計算</button>
+									<button class="calc-button" onclick="clearCalories()">クリア</button>
+								</div>
+								<div class="col-md-6">
+									<div id="calorie-result" class="result-box">
+										<div class="result-text" id="bmr-value"></div>
+										<div id="daily-calories"></div>
+									</div>
+									<div class="health-tips">
+										<strong>活動レベルガイド:</strong><br>
+										• 座り仕事: デスクワーク中心<br>
+										• 軽い運動: 週1-3回<br>
+										• 中程度: 週3-5回<br>
+										• 激しい: 週6-7回<br>
+										• 非常に激しい: 1日2回の運動
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Exercise Distance Calculator -->
+			<div class="calculator-section">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="calculator-card">
+							<h2 class="calc-title">運動距離・消費カロリー計算</h2>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="input-group">
+										<label class="input-label">体重 (kg)</label>
+										<input type="number" id="exercise-weight" class="calc-input" placeholder="例: 65">
+									</div>
+									<div class="input-group">
+										<label class="input-label">運動の種類</label>
+										<select id="exercise-type" class="calc-input">
+											<option value="walking">ウォーキング (4km/h)</option>
+											<option value="jogging">ジョギング (8km/h)</option>
+											<option value="running">ランニング (12km/h)</option>
+											<option value="cycling">サイクリング (16km/h)</option>
+											<option value="swimming">水泳</option>
+										</select>
+									</div>
+									<div class="input-group">
+										<label class="input-label">運動時間 (分)</label>
+										<input type="number" id="exercise-time" class="calc-input" placeholder="例: 30">
+									</div>
+									<button class="calc-button" onclick="calculateExercise()">計算する</button>
+									<button class="calc-button" onclick="clearExercise()">クリア</button>
+								</div>
+								<div class="col-md-6">
+									<div id="exercise-result" class="result-box">
+										<div class="result-text" id="calories-burned"></div>
+										<div id="distance-covered"></div>
+									</div>
+									<div class="health-tips">
+										<strong>運動効果:</strong><br>
+										• ウォーキング: 有酸素運動、脂肪燃焼<br>
+										• ジョギング: 心肺機能向上<br>
+										• ランニング: 高強度、筋力アップ<br>
+										• サイクリング: 下半身強化<br>
+										• 水泳: 全身運動、関節に優しい
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Body Balance Calculator -->
+			<div class="calculator-section">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="calculator-card">
+							<h2 class="calc-title">理想体重・体脂肪率計算</h2>
+							<div class="row">
+								<div class="col-md-6">
+									<div class="input-group">
+										<label class="input-label">身長 (cm)</label>
+										<input type="number" id="ideal-height" class="calc-input" placeholder="例: 170">
+									</div>
+									<div class="input-group">
+										<label class="input-label">現在の体重 (kg)</label>
+										<input type="number" id="current-weight" class="calc-input" placeholder="例: 65">
+									</div>
+									<div class="input-group">
+										<label class="input-label">年齢</label>
+										<input type="number" id="balance-age" class="calc-input" placeholder="例: 30">
+									</div>
+									<div class="input-group">
+										<label class="input-label">性別</label>
+										<select id="balance-gender" class="calc-input">
+											<option value="male">男性</option>
+											<option value="female">女性</option>
+										</select>
+									</div>
+									<button class="calc-button" onclick="calculateBalance()">計算する</button>
+									<button class="calc-button" onclick="clearBalance()">クリア</button>
+								</div>
+								<div class="col-md-6">
+									<div id="balance-result" class="result-box">
+										<div class="result-text" id="ideal-weight"></div>
+										<div id="weight-difference"></div>
+										<div id="body-fat-range"></div>
+									</div>
+									<div class="health-tips">
+										<strong>理想体脂肪率:</strong><br>
+										<strong>男性:</strong> 10-20% (運動選手: 6-13%)<br>
+										<strong>女性:</strong> 16-30% (運動選手: 14-20%)<br>
+										※年齢により基準値は変動します
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+	<!-- end calculator section -->
+
+	<!-- footer -->
+	<div class="footer-area">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box about-widget">
+						<h2 class="widget-title">会社概要</h2>
+						<p>Fruitelyは信頼できるe-コマースプラットフォームで、プレミアム品質の新鮮なフルーツをご自宅まで直接お届けします。私たちは、日本のご家族の健康的なライフスタイルをサポートするために、最高の清潔さと鮮度基準でオーガニック製品を提供することをお約束します。</p>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box get-in-touch">
+						<h2 class="widget-title">お問い合わせ</h2>
+						<ul>
+							<li>〒123-4567 東京都新宿区西新宿1-2-3</li>
+							<li>support@fruitely.com</li>
+							<li>03-1234-5678</li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box pages">
+						<h2 class="widget-title">ページ</h2>
+						<ul>
+							<li><a href="index.html">ホーム</a></li>
+							<li><a href="about.html">会社概要</a></li>
+							<li><a href="shop.html">ショップ</a></li>
+							<li><a href="news.html">ニュース</a></li>
+							<li><a href="contact.html">お問い合わせ</a></li>
+						</ul>
+					</div>
+				</div>
+				<div class="col-lg-3 col-md-6">
+					<div class="footer-box subscribe">
+						<h2 class="widget-title">メールマガジン</h2>
+						<p>最新情報をお届けするメールマガジンにご登録ください。</p>
+						<form action="index.html">
+							<input type="email" placeholder="メールアドレス">
+							<button type="submit"><i class="fas fa-paper-plane"></i></button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end footer -->
+	
+	<!-- copyright -->
+	<div class="copyright">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-6 col-md-12">
+					<p>著作権 &copy; 2019 - <a href="https://fruitely.github.io/checkout.html">Fruitely</a>, すべての権利を保有します。<br>
+						配布元 - <a href="https://fruitely.github.io/checkout.html">Fruitely</a>
+					</p>
+				</div>
+				<div class="col-lg-6 text-right col-md-12">
+					<div class="social-icons">
+						<ul>
+							<li><a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-twitter"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-instagram"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-linkedin"></i></a></li>
+							<li><a href="#" target="_blank"><i class="fab fa-dribbble"></i></a></li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end copyright -->
+
+	<script>
+		// BMI Calculator
+		function calculateBMI() {
+			const height = document.getElementById('height').value;
+			const weight = document.getElementById('weight').value;
+			
+			if (height && weight) {
+				const heightM = height / 100;
+				const bmi = weight / (heightM * heightM);
+				const bmiRounded = Math.round(bmi * 10) / 10;
+				
+				let category = '';
+				let color = '';
+				
+				if (bmi < 18.5) {
+					category = '低体重';
+					color = '#2196F3';
+				} else if (bmi < 25) {
+					category = '普通体重';
+					color = '#4CAF50';
+				} else if (bmi < 30) {
+					category = '肥満度1';
+					color = '#FF9800';
+				} else {
+					category = '肥満度2以上';
+					color = '#F44336';
+				}
+				
+				document.getElementById('bmi-value').innerHTML = `BMI: ${bmiRounded}`;
+				document.getElementById('bmi-category').innerHTML = `判定: <span style="color: ${color}; font-weight: bold;">${category}</span>`;
+				document.getElementById('bmi-result').style.display = 'block';
+			} else {
+				alert('身長と体重を入力してください。');
+			}
+		}
+
+		function clearBMI() {
+			document.getElementById('height').value = '';
+			document.getElementById('weight').value = '';
+			document.getElementById('bmi-result').style.display = 'none';
+		}
+
+		// Calorie Calculator
+		function calculateCalories() {
+			const age = document.getElementById('age').value;
+			const height = document.getElementById('cal-height').value;
+			const weight = document.getElementById('cal-weight').value;
+			const gender = document.getElementById('gender').value;
+			const activity = document.getElementById('activity').value;
+			
+			if (age && height && weight) {
+				let bmr;
+				
+				if (gender === 'male') {
+					bmr = 88.362 + (13.397 * weight) + (4.799 * height) - (5.677 * age);
+				} else {
+					bmr = 447.593 + (9.247 * weight) + (3.098 * height) - (4.330 * age);
+				}
+				
+				const dailyCalories = bmr * parseFloat(activity);
+				
+				document.getElementById('bmr-value').innerHTML = `基礎代謝量: ${Math.round(bmr)} kcal/日`;
+				document.getElementById('daily-calories').innerHTML = `1日の消費カロリー: ${Math.round(dailyCalories)} kcal`;
+				document.getElementById('calorie-result').style.display = 'block';
+			} else {
+				alert('すべての項目を入力してください。');
+			}
+		}
+
+		function clearCalories() {
+			document.getElementById('age').value = '';
+			document.getElementById('cal-height').value = '';
+			document.getElementById('cal-weight').value = '';
+			document.getElementById('calorie-result').style.display = 'none';
+		}
+
+		// Exercise Calculator
+		function calculateExercise() {
+			const weight = document.getElementById('exercise-weight').value;
+			const exerciseType = document.getElementById('exercise-type').value;
+			const time = document.getElementById('exercise-time').value;
+			
+			if (weight && time) {
+				const metValues = {
+					walking: { met: 3.8, speed: 4 },
+					jogging: { met: 8.0, speed: 8 },
+					running: { met: 12.0, speed: 12 },
+					cycling: { met: 8.0, speed: 16 },
+					swimming: { met: 8.0, speed: 0 }
+				};
+				
+				const exercise = metValues[exerciseType];
+				const caloriesBurned = exercise.met * weight * (time / 60);
+				
+				let distanceText = '';
+				if (exercise.speed > 0) {
+					const distance = (exercise.speed * time) / 60;
+					distanceText = `<div>移動距離: ${distance.toFixed(2)} km</div>`;
+				}
+				
+				document.getElementById('calories-burned').innerHTML = `消費カロリー: ${Math.round(caloriesBurned)} kcal`;
+				document.getElementById('distance-covered').innerHTML = distanceText;
+				document.getElementById('exercise-result').style.display = 'block';
+			} else {
+				alert('体重と運動時間を入力してください。');
+			}
+		}
+
+		function clearExercise() {
+			document.getElementById('exercise-weight').value = '';
+			document.getElementById('exercise-time').value = '';
+			document.getElementById('exercise-result').style.display = 'none';
+		}
+
+		// Body Balance Calculator
+		function calculateBalance() {
+			const height = document.getElementById('ideal-height').value;
+			const currentWeight = document.getElementById('current-weight').value;
+			const age = document.getElementById('balance-age').value;
+			const gender = document.getElementById('balance-gender').value;
+			
+			if (height && currentWeight && age) {
+				const heightM = height / 100;
+				const idealWeight = heightM * heightM * 22; // BMI 22を理想とする
+				const difference = currentWeight - idealWeight;
+				
+				let bodyFatRange = '';
+				if (gender === 'male') {
+					if (age < 30) bodyFatRange = '10-20%';
+					else if (age < 40) bodyFatRange = '12-22%';
+					else bodyFatRange = '14-25%';
+				} else {
+					if (age < 30) bodyFatRange = '16-24%';
+					else if (age < 40) bodyFatRange = '19-28%';
+					else bodyFatRange = '22-31%';
+				}
+				
+				let differenceText = '';
+				let color = '';
+				
+				if (Math.abs(difference) < 3) {
+					differenceText = '理想的な体重です';
+					color = '#4CAF50';
+				} else if (difference > 0) {
+					differenceText = `理想体重より ${difference.toFixed(1)}kg 重いです`;
+					color = '#FF9800';
+				} else {
+					differenceText = `理想体重より ${Math.abs(difference).toFixed(1)}kg 軽いです`;
+					color = '#2196F3';
+				}
+				
+				document.getElementById('ideal-weight').innerHTML = `理想体重: ${idealWeight.toFixed(1)} kg`;
+				document.getElementById('weight-difference').innerHTML = `<span style="color: ${color};">${differenceText}</span>`;
+				document.getElementById('body-fat-range').innerHTML = `推奨体脂肪率: ${bodyFatRange}`;
+				document.getElementById('balance-result').style.display = 'block';
+			} else {
+				alert('すべての項目を入力してください。');
+			}
+		}
+
+		function clearBalance() {
+			document.getElementById('ideal-height').value = '';
+			document.getElementById('current-weight').value = '';
+			document.getElementById('balance-age').value = '';
+			document.getElementById('balance-result').style.display = 'none';
+		}
+	</script>
+	
+	<!-- jquery -->
+	<script src="assets/js/jquery-1.11.3.min.js"></script>
+	<!-- bootstrap -->
+	<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+	<!-- count down -->
+	<script src="assets/js/jquery.countdown.js"></script>
+	<!-- isotope -->
+	<script src="assets/js/jquery.isotope-3.0.6.min.js"></script>
+	<!-- waypoints -->
+	<script src="assets/js/waypoints.js"></script>
+	<!-- owl carousel -->
+	<script src="assets/js/owl.carousel.min.js"></script>
+	<!-- magnific popup -->
+	<script src="assets/js/jquery.magnific-popup.min.js"></script>
+	<!-- mean menu -->
+	<script src="assets/js/jquery.meanmenu.min.js"></script>
+	<!-- sticker js -->
+	<script src="assets/js/sticker.js"></script>
+	<!-- main js -->
+	<script src="assets/js/main.js"></script>
+
+</body>
+</html>
